@@ -1,20 +1,9 @@
-node {
-
-   stage('SCM') {
-      // git clone
-	  git 'https://github.com/GitPracticeRepo/spring-petclinic.git'
-   }
-   
-   stage ('build the packages') {
-      // mvn package
-	  sh 'mvn package'
-   }
-
-   
-   
-   stage ('archival') {
-     // archiving artifacts
-	 archive 'target/*.jar'
-   }
-
+node('MVN'){
+    
+    stage('GIT'){
+        git branch: 'Dev', url: 'https://github.com/GitPracticeRepo/spring-petclinic.git'
+    }
+    stage('Build'){
+        sh 'mvn package'
+    }
 }
