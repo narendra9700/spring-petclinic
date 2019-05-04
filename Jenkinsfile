@@ -6,4 +6,8 @@ node('MVN'){
     stage('Build'){
         sh 'mvn package'
     }
+	stage('Archive'){
+		archive 'target//*.jar'
+		junit 'target/surefire-reports/*.xml'
+	}
 }
